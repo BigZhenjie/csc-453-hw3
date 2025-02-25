@@ -29,8 +29,14 @@ def get_farthest_next_use(frame_to_page, next_use, current_index):
     return farthest_frame
 
 def main():
+    # Default arguments if none are provided
+    DEFAULT_FRAMES = 256
+    DEFAULT_PRA = "FIFO"
+
     # Parse arguments
-    ref_file, frames, pra = sys.argv[1], int(sys.argv[2]), sys.argv[3]
+    ref_file = sys.argv[1] if len(sys.argv) > 1 else None
+    frames = int(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_FRAMES
+    pra = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_PRA
     
     # Read addresses and preprocess for OPT
     with open(ref_file, 'r') as f:
